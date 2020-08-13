@@ -1,14 +1,30 @@
+# debug = True
+
 '''
 Input: a List of integers as well as an integer `k` representing the size of the sliding window
 Returns: a List of integers
 '''
 def sliding_window_max(nums, k):
-    # Your code here
-    l = len(nums)
-    result = []
-    for i in range(l+1-k):
-        segment = nums[i:i+k]
-        result.append(max(segment))
+    # if debug: print(f"nums\t{nums}")
+    # l = len(nums)
+    m = max(nums[:k])
+    result = [m]
+    # for i in range(1+l-k):
+    for i in range(k,len(nums)):
+        if nums[i] > m:
+            m = nums[i]
+            # if debug: print(f"segment\t{m}")
+        # else:
+            # segment = nums[i:i+k]
+            # segment = nums[i-k+1:i+1]
+            # if debug: print(f"segment\t{segment}")
+            # m = max(segment)
+        elif m == nums[i-k]:
+            m = max(nums[i-k+1:i+1])
+        # if debug: print(f"max\t{m}")
+        result.append(m)
+    
+    # if debug: print(f"result\t{result}")
     return result
 
 
