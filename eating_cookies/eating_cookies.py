@@ -2,14 +2,17 @@
 Input: an integer
 Returns: an integer
 '''
-def eating_cookies(n):
+def eating_cookies(n, cache = None):
     r = -1
     if n < 0:
         r = 0
     elif n == 0:
         r = 1
+    elif cache and cache[n]:
+        r = cache[n]
     else:
-        r = eating_cookies(n-1) + eating_cookies(n-2) + eating_cookies(n-3)
+        r = eating_cookies(n-1, cache) + eating_cookies(n-2, cache) + eating_cookies(n-3, cache)
+        if cache: cache[n] = r
     return r
 
 if __name__ == "__main__":
