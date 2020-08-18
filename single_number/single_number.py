@@ -1,11 +1,27 @@
+debug = False
+
 '''
 Input: a List of integers where every int except one shows up twice
 Returns: an integer
 '''
 def single_number(arr):
-    # Your code here
+    result = []
+    for n in arr:
+        if debug: print(f"n: {n}")
+        r = -1
+        try:
+            r = result.index(n)
+        except ValueError:
+            pass
+        finally:
+            if debug: print(f"r: {r}")
+            if r >= 0:
+                result.remove(n)
+            else:
+                result.append(n)
+        if debug: print(result)
 
-    pass
+    return result[0]
 
 
 if __name__ == '__main__':
